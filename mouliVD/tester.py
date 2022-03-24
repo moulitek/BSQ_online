@@ -115,7 +115,8 @@ else:
     res = BADOUTPUT
     if crash > 0:
         res = SEGFAULT
-    Given_maps_34.set_status("34*137", False, res, expected="OK", got="KO on\n" + lst_to_str(basic_failed))
+    Given_maps_34.set_status(
+        "34*137", False, res, expected="OK", got="KO on\n" + lst_to_str(basic_failed))
 
 crash = 0
 basic_failed = []
@@ -128,7 +129,8 @@ else:
     res = BADOUTPUT
     if crash > 0:
         res = SEGFAULT
-    Given_maps_187.set_status("187*187", False, res, expected="OK", got="KO on\n" + lst_to_str(basic_failed))
+    Given_maps_187.set_status(
+        "187*187", False, res, expected="OK", got="KO on\n" + lst_to_str(basic_failed))
 
 crash = 0
 basic_failed = []
@@ -141,7 +143,8 @@ else:
     res = BADOUTPUT
     if crash > 0:
         res = SEGFAULT
-    Given_maps_187.set_status("187*187", False, res, expected="OK", got="KO on\n" + lst_to_str(basic_failed))
+    Given_maps_187.set_status(
+        "187*187", False, res, expected="OK", got="KO on\n" + lst_to_str(basic_failed))
 
 crash = 0
 basic_failed = []
@@ -154,7 +157,8 @@ else:
     res = BADOUTPUT
     if crash > 0:
         res = SEGFAULT
-    Given_maps_one.set_status("one*one", False, res, expected="OK", got="KO on\n" + lst_to_str(basic_failed))
+    Given_maps_one.set_status(
+        "one*one", False, res, expected="OK", got="KO on\n" + lst_to_str(basic_failed))
 
 
 crash = 0
@@ -168,7 +172,8 @@ else:
     res = BADOUTPUT
     if crash > 0:
         res = SEGFAULT
-    Given_maps_line.set_status("line", False, res, expected="OK", got="KO on\n" + lst_to_str(basic_failed))
+    Given_maps_line.set_status(
+        "line", False, res, expected="OK", got="KO on\n" + lst_to_str(basic_failed))
 
 
 crash = 0
@@ -182,7 +187,8 @@ else:
     res = BADOUTPUT
     if crash > 0:
         res = SEGFAULT
-    Given_maps_col.set_status("col", False, res, expected="OK", got="KO on\n" + lst_to_str(basic_failed))
+    Given_maps_col.set_status(
+        "col", False, res, expected="OK", got="KO on\n" + lst_to_str(basic_failed))
 
 
 crash = 0
@@ -196,20 +202,21 @@ else:
     res = BADOUTPUT
     if crash > 0:
         res = SEGFAULT
-    Given_maps_other.set_status("other", False, res, expected="OK", got="KO on\n" + lst_to_str(basic_failed))
+    Given_maps_other.set_status(
+        "other", False, res, expected="OK", got="KO on\n" + lst_to_str(basic_failed))
 
-crash = 0
-basic_failed = []
-Given_maps_error = error_hand.add_sequence("Error handling")
-Given_maps_error.add_test("Error handling")
-crash = testor(basic_failed, err)
-if len(basic_failed) == 0:
-    Given_maps_error.set_status("Error handling", True)
-else:
-    res = BADOUTPUT
-    if crash > 0:
-        res = SEGFAULT
-    Given_maps_error.set_status("Error handling", False, res, expected="OK", got="KO on\n" + lst_to_str(basic_failed))
+for elem in err:
+    Given_maps_error = 0
+    tmp = elem.split(' ')
+    name = get_name(tmp[0])
+    Given_maps_error = error_hand.add_sequence(name)
+    Given_maps_error.add_test(name)
+    if "Error" in elem:
+        Given_maps_error.set_status(name, False, BADOUTPUT, expected="OK", got="KO")
+    elif "Crash" in elem:
+        Given_maps_error.set_status(name, False, SEGFAULT, expected="OK", got="CRASH")
+    else:
+        Given_maps_error.set_status(name, True)
 
 loop = looper.add_sequence("Loop 1500")
 loop.add_test("Loop 1500")

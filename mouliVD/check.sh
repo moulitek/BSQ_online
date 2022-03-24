@@ -21,10 +21,10 @@ test_expect_success () {
 
 test_expect_error () {
     local str="${1}"
-    ./${BINARY} ${str}
+    ./${BINARY} ${str} > issou
     ret=`echo $?`
     if [[ ${ret} == 139 ]] || [[ ${ret} == 136 ]] ; then
-        printf "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" ${1}
+        printf "Crash" ${1}
         return;
     fi
     if [[ ${ret} != 84 ]] ; then
