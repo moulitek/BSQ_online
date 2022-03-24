@@ -1,7 +1,9 @@
 from moulitek.moulitek import *
 import sys
 import os
-init_moulitek();
+
+init_moulitek()
+
 basic_failed = []
 lst_97 = []
 lst_34 = []
@@ -75,6 +77,8 @@ seperate()
 
 os.system("make")
 Given_maps = Category("Given maps", "Basics tests made by moulinette : given maps on subject")
+error_hand = Category("Error handling", "Error handling tests")
+looper = Category("Loop", "Loop on 1500 random maps to check segfault")
 
 basic_failed = []
 Given_maps_97 = Given_maps.add_sequence("97*21")
@@ -149,7 +153,7 @@ else:
     Given_maps_other.set_status("other", False, BADOUTPUT, expected="OK", got="KO on\n" + lst_to_str(basic_failed))
 
 basic_failed = []
-Given_maps_error = Given_maps.add_sequence("Error handling")
+Given_maps_error = error_hand.add_sequence("Error handling")
 Given_maps_error.add_test("Error handling")
 testor(basic_failed, err)
 if len(basic_failed) == 0:
@@ -157,7 +161,7 @@ if len(basic_failed) == 0:
 else:
     Given_maps_error.set_status("Error handling", False, BADOUTPUT, expected="OK", got="KO on\n" + lst_to_str(basic_failed))
 
-loop = Given_maps.add_sequence("Loop 1500")
+loop = looper.add_sequence("Loop 1500")
 loop.add_test("Loop 1500")
 testor(basic_failed, err)
 ret = os.system("script/loop.sh 1500")
