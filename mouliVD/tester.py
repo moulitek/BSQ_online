@@ -132,19 +132,6 @@ else:
     Given_maps_187.set_status(
         "187*187", False, res, expected="OK", got="KO on\n" + lst_to_str(basic_failed))
 
-crash = 0
-basic_failed = []
-Given_maps_187 = Given_maps.add_sequence("187*187")
-Given_maps_187.add_test("187*187")
-crash = testor(basic_failed, lst_187)
-if len(basic_failed) == 0:
-    Given_maps_187.set_status("187*187", True)
-else:
-    res = BADOUTPUT
-    if crash > 0:
-        res = SEGFAULT
-    Given_maps_187.set_status(
-        "187*187", False, res, expected="OK", got="KO on\n" + lst_to_str(basic_failed))
 
 crash = 0
 basic_failed = []
