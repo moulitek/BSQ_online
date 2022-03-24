@@ -1,7 +1,7 @@
 from moulitek.moulitek import *
 import sys
 import os
-
+init_moulitek();
 basic_failed = []
 lst_97 = []
 lst_34 = []
@@ -34,7 +34,7 @@ def get_trace():
     try:
         text_file = open("trace", "r")
         data = text_file.read()
-        data =  data.split('~') 
+        data =  data.split('~')
         basic = data[0]
         errore = data[1]
         text_file.close()
